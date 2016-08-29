@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Dark Admin</title>
+
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/local.css" />
+
+    <script src="js/Chart.min.js"></script>
+
+
+
+    <!-- Agregamos la librería jquery.js desde su repositorio -->
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- you need to include the shieldui css and js assets in order for the charts to work -->
+    <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
+    <link id="gridcss" rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/dark-bootstrap/all.min.css" />
+
+    <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script type="text/javascript" src="http://www.prepbootstrap.com/Content/js/gridData.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <script>
+        //vinculamos esta web a firebase para usar db
+        var config = {
+            apiKey: "AIzaSyAI8t9V19AunDS5hUeAlla9BM23WFQHi7M",
+            authDomain: "androidtest-5d41b.firebaseapp.com",
+            databaseURL: "https://androidtest-5d41b.firebaseio.com",
+            storageBucket: "androidtest-5d41b.appspot.com",
+        };
+        firebase.initializeApp(config);
+    </script>
+</head>
+<body>
+
+
+
+        <div id="page-wrapper">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 1</h3>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="grafica1"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 2</h3>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="grafica2"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 3</h3>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="grafica3"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 4</h3>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="grafica4"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 5</h3>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="grafica5"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 6</h3>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="grafica6"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    <!-- /#wrapper -->
+
+
+</body>
+<script>
+    //variable para limitar los valores a mostrar en la grafica   <canvas id="grafica" width="600" height="400"></canvas>
+    puntos=0;
+    maxPuntos=20;
+
+    //Script de la grafica
+
+   var ctx = document.getElementById("grafica1").getContext("2d");
+    var ctx2 = document.getElementById("grafica2").getContext("2d");
+    var ctx3 = document.getElementById("grafica3").getContext("2d");
+    var ctx4 = document.getElementById("grafica4").getContext("2d");
+    var ctx5 = document.getElementById("grafica5").getContext("2d");
+    var ctx6 = document.getElementById("grafica6").getContext("2d");
+    //var ctx7 = document.getElementById("grafica7").getContext("2d");
+   //var ctx8 = document.getElementById("grafica8").getContext("2d");
+
+    //Datos iniciales vacíos
+    startingData = {
+        labels: [0],
+        datasets: [
+            {
+                //Colores de la grafica
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                data: [0],
+
+
+            }
+        ]
+    }
+
+    // Creamos una nueva gráfica y reducimos los pasos de animación para optimizar la velocidad de renderizado
+   grafica= new Chart(ctx).Line(startingData,{animationSteps: 1});
+    grafica2= new Chart(ctx2).Line(startingData,{animationSteps: 1});
+    grafica3= new Chart(ctx3).Line(startingData,{animationSteps: 1});
+    grafica4= new Chart(ctx4).Line(startingData,{animationSteps: 1});
+    grafica5= new Chart(ctx5).Line(startingData,{animationSteps: 1});
+   grafica6= new Chart(ctx6).Line(startingData,{animationSteps: 1});
+    //grafica7= new Chart(ctx7).Line(startingData,{animationSteps: 1});
+    //grafica8= new Chart(ctx8).Line(startingData,{animationSteps: 1});
+
+    //Accedemos a nuestra base de datos
+    var database=firebase.database();
+    //Hacemos referencia a nuestro nodo del sensor Temp
+    var tempRef = database.ref("encoders");
+
+    //Se ejecuta por cada valor existente en la BD
+    //y cada que se agrega un valor nuevo a la base de datos
+    tempRef.on("child_added", function(snapshot, prevChildKey) {
+        //recuperamos una captura del objeto leido
+        var t = snapshot.val();//t corresponderá a cada elemento dentro del nodo Temp
+        //Mostramos los datos en la consola de javascript
+        //console.log("Value: " + t.value);
+        //console.log("Timestamp: " + t.timestamp);
+        //Agregamos los datos a la tabla
+        //$('#tabla').append('<tr><td>'+t.timestamp+'</td><td>'+t.value+'</td></tr>');
+
+        //Agregamos valores a la gráfica
+        grafica.addData([t.enc1], "");
+       grafica2.addData([t.enc2], "");
+        grafica3.addData([t.enc3], "");
+        grafica4.addData([t.enc4], "");
+        grafica5.addData([t.enc5], "");
+       grafica6.addData([t.enc6], "");
+       //grafica7.addData([t.enc7], "");
+       // grafica8.addData([t.enc8], "");
+//console.log(t.enc2);
+      /*  puntos++;
+        console.log(puntos);
+        if(puntos>maxPuntos){
+            grafica.removeData();
+            puntos--;
+
+        }*/
+
+    });
+
+    //Usamos JQuery para detectar clic en el botón
+    $('#btn').click(function(){
+        //grafica.addData([4], "hola");
+        //Agregamos un dato nuevo en la base de datos
+        grafica.removeData();
+    });
+
+</script>
+
+</html>
