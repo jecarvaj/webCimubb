@@ -86,18 +86,18 @@
         </div>
     </nav>
 
-        <div id="page-wrapper" style="padding: 9px">
+        <div id="page-wrapper" >
             <div class="page-header">
-                <h1 id="encodersTab">Cuentas de encoders</h1>
+                <h1 id="encodersTab"><i class="fa fa-cogs" aria-hidden="true"></i> Cuentas de encoders</h1>
 
                 <div class="row">
-                            <div class="col-md-3">
-                                <div class="panel panel-primary">
+                            <div class="col-md-3" >
+                                <div class="panel panel-primary " >
                                     <div class="panel-heading">
                                         <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 1</h3>
                                     </div>
                                     <div id="panel1" class="panel-body">
-                                        <canvas id="grafica1"></canvas>
+                                        <canvas id="grafica1" style="height:inherit"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +193,7 @@
 
                                 <!-- Table -->
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table" id="tablaMensajesRecibidos">
                                         <thead>
                                         <tr>
                                             <th>Mensaje</th>
@@ -202,47 +202,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>Content 1</td>
-                                            <td>Content 2</td>
-                                            <td>Content 3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Content 1</td>
-                                            <td>Lorem ipsum dolor sit amet.</td>
-                                            <td>Content 3</td>
 
-                                        </tr>
-                                        <tr>
-                                            <td>Content 1</td>
-                                            <td>Content 2</td>
-                                            <td>Content 3</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Content 1</td>
-                                            <td>Content 2</td>
-                                            <td>Content 3</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Content 1</td>
-                                            <td>Content 2</td>
-                                            <td>Content 3</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Content 1</td>
-                                            <td>Content 2</td>
-                                            <td>Content 3</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Content 1</td>
-                                            <td>Content 2</td>
-                                            <td>Content 3</td>
-
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -260,7 +220,7 @@
 
                                 <!-- Table -->
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table" id="tablaMensajesEnviados">
                                         <thead>
                                         <tr>
                                             <th>Mensaje</th>
@@ -269,47 +229,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>Content 1</td>
-                                            <td>Content 2</td>
-                                            <td>Content 3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Content 1</td>
-                                            <td>Lorem ipsum dolor sit amet.</td>
-                                            <td>Content 3</td>
 
-                                        </tr>
-                                        <tr>
-                                            <td>Content 1</td>
-                                            <td>Content 2</td>
-                                            <td>Content 3</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Content 1</td>
-                                            <td>Content 2</td>
-                                            <td>Content 3</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Content 1</td>
-                                            <td>Content 2</td>
-                                            <td>Content 3</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Content 1</td>
-                                            <td>Content 2</td>
-                                            <td>Content 3</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Content 1</td>
-                                            <td>Content 2</td>
-                                            <td>Content 3</td>
-
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -326,138 +246,57 @@
 
 </body>
 <script>
-    //variable para limitar los valores a mostrar en la grafica
-    puntos=0;
-    maxPuntos=120;  //desde la app android a la nube se suben 2 cuentas encoders cada segundo, en 120 puntos sería 1 minuto
+    $( document ).ready(function() {
 
-    //Script de la grafica
-   var ctx = document.getElementById("grafica1").getContext("2d");
-    var ctx2 = document.getElementById("grafica2").getContext("2d");
-    var ctx3 = document.getElementById("grafica3").getContext("2d");
-    var ctx4 = document.getElementById("grafica4").getContext("2d");
-    var ctx5 = document.getElementById("grafica5").getContext("2d");
-    var ctx6 = document.getElementById("grafica6").getContext("2d");
-    var ctx7 = document.getElementById("grafica7").getContext("2d");
-   var ctx8 = document.getElementById("grafica8").getContext("2d");
+        //variable para limitar los valores a mostrar en la grafica
+        puntos = 0;
+        maxPuntos = 120;  //desde la app android a la nube se suben 2 cuentas encoders cada segundo, en 120 puntos sería 1 minuto
 
-    //Datos iniciales vacíos
-    datosIniciales = {
-        labels: [0],
-        datasets: [
-            {
-                //Colores de la grafica
-                fillColor: "transparent",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "transparent",
-                pointStrokeColor: "transparent",
-                data: [0],
-            }
-        ]
-    }
+        //Script de la grafica
+        var ctx = document.getElementById("grafica1").getContext("2d");
+        var ctx2 = document.getElementById("grafica2").getContext("2d");
+        var ctx3 = document.getElementById("grafica3").getContext("2d");
+        var ctx4 = document.getElementById("grafica4").getContext("2d");
+        var ctx5 = document.getElementById("grafica5").getContext("2d");
+        var ctx6 = document.getElementById("grafica6").getContext("2d");
+        var ctx7 = document.getElementById("grafica7").getContext("2d");
+        var ctx8 = document.getElementById("grafica8").getContext("2d");
 
-    //Creamos las graficas para cada encoder, se pudo haber hecho de una forma mas eficiente pero no quise.
-    //bajé la velocidad de animacion para mejorar el renderizado y que no se pegue
-    grafica = new Chart(ctx).Line(datosIniciales,{animationSteps: 1});
-    grafica2= new Chart(ctx2).Line(datosIniciales,{animationSteps: 1});
-    grafica3= new Chart(ctx3).Line(datosIniciales,{animationSteps: 1});
-    grafica4= new Chart(ctx4).Line(datosIniciales,{animationSteps: 1});
-    grafica5= new Chart(ctx5).Line(datosIniciales,{animationSteps: 1});
-    grafica6= new Chart(ctx6).Line(datosIniciales,{animationSteps: 1});
-    grafica7= new Chart(ctx7).Line(datosIniciales,{animationSteps: 1});
-    grafica8= new Chart(ctx8).Line(datosIniciales,{animationSteps: 1});
+        //Datos iniciales vacíos
+        datosIniciales = {
+            labels: [0],
+            datasets: [
+                {
+                    //Colores de la grafica
+                    fillColor: "transparent",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "transparent",
+                    pointStrokeColor: "transparent",
+                    data: [0],
+                }
+            ]
+        }
 
-    //Accedemos a nuestra base de datos, teniendo previamente inicializada la web para trabajar con firebase (al principio)
-    var database=firebase.database();
+        //Creamos las graficas para cada encoder, se pudo haber hecho de una forma mas eficiente pero no quise.
+        //bajé la velocidad de animacion para mejorar el renderizado y que no se pegue
+        grafica = new Chart(ctx).Line(datosIniciales, {animationSteps: 1});
+        grafica2 = new Chart(ctx2).Line(datosIniciales, {animationSteps: 1});
+        grafica3 = new Chart(ctx3).Line(datosIniciales, {animationSteps: 1});
+        grafica4 = new Chart(ctx4).Line(datosIniciales, {animationSteps: 1});
+        grafica5 = new Chart(ctx5).Line(datosIniciales, {animationSteps: 1});
+        grafica6 = new Chart(ctx6).Line(datosIniciales, {animationSteps: 1});
+        grafica7 = new Chart(ctx7).Line(datosIniciales, {animationSteps: 1});
+        grafica8 = new Chart(ctx8).Line(datosIniciales, {animationSteps: 1});
 
-    //Hacemos referencia a donde se encuentren los datos a mostrar
-    var referencia = database.ref("enc1");
+        //Accedemos a nuestra base de datos, teniendo previamente inicializada la web para trabajar con firebase (al principio)
+        var database = firebase.database();
 
-    //Se ejecuta por cada valor existente en la BD
-    //y cada que se agrega un valor nuevo a la base de datos
-    referencia.on("child_added", function(snapshot) {
-        //recuperamos una captura del objeto leido
-        var t = snapshot.val();//t corresponderá a cada elemento dentro del nodo Temp
-        //Mostramos los datos en la consola de javascript
-        //console.log("Value: " + t.value);
-        //console.log("Timestamp: " + t.timestamp);
-        //Agregamos los datos a la tabla
-        //$('#tabla').append('<tr><td>'+t.timestamp+'</td><td>'+t.value+'</td></tr>');
+        //Hacemos referencia a donde se encuentren los datos a mostrar
+        var referencia = database.ref("encoders");
 
-        //Agregamos valores a la gráfica
-        grafica.addData([t.enc1], "");
-       grafica2.addData([t.enc2], "");
-        grafica3.addData([t.enc3], "");
-        grafica4.addData([t.enc4], "");
-        grafica5.addData([t.enc5], "");
-       grafica6.addData([t.enc6], "");
-       grafica7.addData([t.enc7], "");
-        grafica8.addData([t.enc8], "");
-//console.log(t.enc2);
-      /*  puntos++;
-        console.log(puntos);
-        if(puntos>maxPuntos){
-            grafica.removeData();
-            puntos--;
-
-        }*/
-
-    });
-
-    //Usamos JQuery para detectar clic en el botón
-    $('#btnReiniciar').click(function(){
-
-
-        $('#grafica1').remove();
-        $('#panel1').append('<canvas id="grafica1"><canvas>');
-        canvas = document.querySelector('#grafica1');
-        ctx = canvas.getContext('2d');
-        grafica= new Chart(ctx).Line(datosIniciales,{animationSteps: 1});
-
-        $('#grafica2').remove();
-        $('#panel2').append('<canvas id="grafica2"><canvas>');
-        canvas = document.querySelector('#grafica2');
-        ctx2 = canvas.getContext('2d');
-        grafica2= new Chart(ctx2).Line(datosIniciales,{animationSteps: 1});
-
-        $('#grafica3').remove();
-        $('#panel3').append('<canvas id="grafica3"><canvas>');
-        canvas = document.querySelector('#grafica3');
-        ctx3 = canvas.getContext('2d');
-        grafica3= new Chart(ctx3).Line(datosIniciales,{animationSteps: 1});
-
-        $('#grafica4').remove();
-        $('#panel4').append('<canvas id="grafica4"><canvas>');
-        canvas = document.querySelector('#grafica4');
-        ctx4 = canvas.getContext('2d');
-        grafica4= new Chart(ctx4).Line(datosIniciales,{animationSteps: 1});
-
-        $('#grafica5').remove();
-        $('#panel5').append('<canvas id="grafica5"><canvas>');
-        canvas = document.querySelector('#grafica5');
-        ctx5 = canvas.getContext('2d');
-        grafica5= new Chart(ctx5).Line(datosIniciales,{animationSteps: 1});
-
-        $('#grafica6').remove();
-        $('#panel6').append('<canvas id="grafica6"><canvas>');
-        canvas = document.querySelector('#grafica6');
-        ctx6 = canvas.getContext('2d');
-        grafica6= new Chart(ctx6).Line(datosIniciales,{animationSteps: 1});
-
-        $('#grafica7').remove();
-        $('#panel7').append('<canvas id="grafica7"><canvas>');
-        canvas = document.querySelector('#grafica7');
-        ctx7 = canvas.getContext('2d');
-        grafica7= new Chart(ctx7).Line(datosIniciales,{animationSteps: 1});
-
-        $('#grafica8').remove();
-        $('#panel8').append('<canvas id="grafica8"><canvas>');
-        canvas = document.querySelector('#grafica8');
-        ctx8 = canvas.getContext('2d');
-        grafica8= new Chart(ctx8).Line(datosIniciales,{animationSteps: 1});
-
-    });
-    $('#btnMonitorear').click(function(){
-        referencia.on("child_added", function(snapshot) {
+        //Se ejecuta por cada valor existente en la BD
+        //y cada que se agrega un valor nuevo a la base de datos
+        referencia.on("child_added", function (snapshot) {
             //recuperamos una captura del objeto leido
             var t = snapshot.val();//t corresponderá a cada elemento dentro del nodo Temp
             //Mostramos los datos en la consola de javascript
@@ -475,10 +314,118 @@
             grafica6.addData([t.enc6], "");
             grafica7.addData([t.enc7], "");
             grafica8.addData([t.enc8], "");
+//console.log(t.enc2);
+            puntos++;
+            console.log(puntos);
+            if (puntos > maxPuntos) {
+                grafica.removeData();
+                puntos--;
+
+            }
+
+        });
+
+        var refMensajesRecibidos = database.ref("recibidos");
+
+        //Se ejecuta por cada valor existente en la BD
+        //y cada que se agrega un valor nuevo a la base de datos
+        refMensajesRecibidos.on("child_added", function (snapshot) {
+            //recuperamos una captura del objeto leido
+            var recibido = snapshot.val();//t corresponderá a cada elemento dentro del nodo
+            $('#tablaMensajesRecibidos').append('<tr><td>'+recibido.mensaje+'</td><td>'+recibido.fecha+'</td><td>'+recibido.hora+'</td></tr>');
+        });
+
+        var refMensajesEnviados = database.ref("enviados");
+
+        //Se ejecuta por cada valor existente en la BD
+        //y cada que se agrega un valor nuevo a la base de datos
+        refMensajesEnviados.on("child_added", function (snapshot) {
+            //recuperamos una captura del objeto leido
+            var enviado = snapshot.val();//t corresponderá a cada elemento dentro del nodo
+            $('#tablaMensajesEnviados').append('<tr><td>'+enviado.mensaje+'</td><td>'+enviado.fecha+'</td><td>'+enviado.hora+'</td></tr>');
+        });
+
+        //Usamos JQuery para detectar clic en el botón
+        $('#btnReiniciar').click(function () {
+
+
+            $('#grafica1').remove();
+            $('#panel1').append('<canvas id="grafica1"><canvas>');
+            canvas = document.querySelector('#grafica1');
+            ctx = canvas.getContext('2d');
+            grafica = new Chart(ctx).Line(datosIniciales, {animationSteps: 1});
+
+            $('#grafica2').remove();
+            $('#panel2').append('<canvas id="grafica2"><canvas>');
+            canvas = document.querySelector('#grafica2');
+            ctx2 = canvas.getContext('2d');
+            grafica2 = new Chart(ctx2).Line(datosIniciales, {animationSteps: 1});
+
+            $('#grafica3').remove();
+            $('#panel3').append('<canvas id="grafica3"><canvas>');
+            canvas = document.querySelector('#grafica3');
+            ctx3 = canvas.getContext('2d');
+            grafica3 = new Chart(ctx3).Line(datosIniciales, {animationSteps: 1});
+
+            $('#grafica4').remove();
+            $('#panel4').append('<canvas id="grafica4"><canvas>');
+            canvas = document.querySelector('#grafica4');
+            ctx4 = canvas.getContext('2d');
+            grafica4 = new Chart(ctx4).Line(datosIniciales, {animationSteps: 1});
+
+            $('#grafica5').remove();
+            $('#panel5').append('<canvas id="grafica5"><canvas>');
+            canvas = document.querySelector('#grafica5');
+            ctx5 = canvas.getContext('2d');
+            grafica5 = new Chart(ctx5).Line(datosIniciales, {animationSteps: 1});
+
+            $('#grafica6').remove();
+            $('#panel6').append('<canvas id="grafica6"><canvas>');
+            canvas = document.querySelector('#grafica6');
+            ctx6 = canvas.getContext('2d');
+            grafica6 = new Chart(ctx6).Line(datosIniciales, {animationSteps: 1});
+
+            $('#grafica7').remove();
+            $('#panel7').append('<canvas id="grafica7"><canvas>');
+            canvas = document.querySelector('#grafica7');
+            ctx7 = canvas.getContext('2d');
+            grafica7 = new Chart(ctx7).Line(datosIniciales, {animationSteps: 1});
+
+            $('#grafica8').remove();
+            $('#panel8').append('<canvas id="grafica8"><canvas>');
+            canvas = document.querySelector('#grafica8');
+            ctx8 = canvas.getContext('2d');
+            grafica8 = new Chart(ctx8).Line(datosIniciales, {animationSteps: 1});
+
+        });
+        $('#btnMonitorear').click(function () {
+            //  referencia.on("child_added", function(snapshot, prevChildKey) {
+            //recuperamos una captura del objeto leido
+            //  var t = snapshot.val();//t corresponderá a cada elemento dentro del nodo Temp
+            //Mostramos los datos en la consola de javascript
+            //console.log("Value: " + t.value);
+            //console.log("Timestamp: " + t.timestamp);
+            //Agregamos los datos a la tabla
+            //$('#tabla').append('<tr><td>'+t.timestamp+'</td><td>'+t.value+'</td></tr>');
+
+            //Agregamos valores a la gráfica
+            grafica.addData([6], "");
+            grafica2.addData([8], "");
+            grafica3.addData([1], "");
+            grafica4.addData([8], "");
+            grafica5.addData([3], "");
+            grafica6.addData([9], "");
+            grafica7.addData([4], "");
+            grafica8.addData([3], "");
+
+
+            //  });
+            alert("holaa");
 
 
         });
-        alert("holaa");
+
+
 
     });
 
