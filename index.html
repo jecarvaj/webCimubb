@@ -37,14 +37,54 @@
         firebase.initializeApp(config);
     </script>
 </head>
-<body>
+<body style="background-color: #060606;">
 
+<!--<div id="wrapper">-->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">CIMUBB</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
 
+            <ul class="nav navbar-nav navbar-right navbar-user">
+                <li class="dropdown messages-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-cogs" aria-hidden="true"></i> Seleccionar dispositivo  <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="message-preview">
+                            <a href="#">
+                                <span class="message">SCORBOT-ER V</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <span class="message">ROBOT X</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <span class="message">ROBOT Y</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
 
         <div id="page-wrapper">
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 1</h3>
@@ -54,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3"">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 2</h3>
@@ -64,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 3</h3>
@@ -74,10 +114,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 4</h3>
@@ -87,7 +124,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-3">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 5</h3>
@@ -97,13 +139,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 6</h3>
                         </div>
                         <div class="panel-body">
                             <canvas id="grafica6"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 7</h3>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="grafica7"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 8</h3>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="grafica8"></canvas>
                         </div>
                     </div>
                 </div>
@@ -129,8 +191,8 @@
     var ctx4 = document.getElementById("grafica4").getContext("2d");
     var ctx5 = document.getElementById("grafica5").getContext("2d");
     var ctx6 = document.getElementById("grafica6").getContext("2d");
-    //var ctx7 = document.getElementById("grafica7").getContext("2d");
-   //var ctx8 = document.getElementById("grafica8").getContext("2d");
+    var ctx7 = document.getElementById("grafica7").getContext("2d");
+   var ctx8 = document.getElementById("grafica8").getContext("2d");
 
     //Datos iniciales vacíos
     startingData = {
@@ -138,10 +200,10 @@
         datasets: [
             {
                 //Colores de la grafica
-                fillColor: "rgba(220,220,220,0.2)",
+                fillColor: "transparent",
                 strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointStrokeColor: "#fff",
+                pointColor: "transparent",
+                pointStrokeColor: "transparent",
                 data: [0],
 
 
@@ -156,8 +218,8 @@
     grafica4= new Chart(ctx4).Line(startingData,{animationSteps: 1});
     grafica5= new Chart(ctx5).Line(startingData,{animationSteps: 1});
    grafica6= new Chart(ctx6).Line(startingData,{animationSteps: 1});
-    //grafica7= new Chart(ctx7).Line(startingData,{animationSteps: 1});
-    //grafica8= new Chart(ctx8).Line(startingData,{animationSteps: 1});
+    grafica7= new Chart(ctx7).Line(startingData,{animationSteps: 1});
+    grafica8= new Chart(ctx8).Line(startingData,{animationSteps: 1});
 
     //Accedemos a nuestra base de datos
     var database=firebase.database();
@@ -182,8 +244,8 @@
         grafica4.addData([t.enc4], "");
         grafica5.addData([t.enc5], "");
        grafica6.addData([t.enc6], "");
-       //grafica7.addData([t.enc7], "");
-       // grafica8.addData([t.enc8], "");
+       grafica7.addData([t.enc7], "");
+        grafica8.addData([t.enc8], "");
 //console.log(t.enc2);
       /*  puntos++;
         console.log(puntos);
