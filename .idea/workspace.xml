@@ -29,13 +29,23 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.050259966">
-              <caret line="96" column="37" selection-start-line="96" selection-start-column="37" selection-end-line="96" selection-end-column="37" />
+            <state vertical-scroll-proportion="2.7660313">
+              <caret line="459" column="8" selection-start-line="459" selection-start-column="8" selection-end-line="459" selection-end-column="8" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#9599#9645#0" expanded="false" />
-                <element signature="e#9854#9908#0" expanded="false" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#18268#18322#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap-elements.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bootstrap-elements.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.5384617">
+              <caret line="234" column="37" selection-start-line="234" selection-start-column="13" selection-end-line="234" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -43,15 +53,8 @@
       <file leaf-file-name="local.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/local.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.5660377">
-              <caret line="5946" column="14" selection-start-line="5946" selection-start-column="14" selection-end-line="5946" selection-end-column="14" />
-              <caret line="5947" column="0" selection-start-line="5947" selection-start-column="0" selection-end-line="5947" selection-end-column="0" />
-              <caret line="5948" column="3" selection-start-line="5948" selection-start-column="3" selection-end-line="5948" selection-end-column="3" />
-              <caret line="5949" column="0" selection-start-line="5949" selection-start-column="0" selection-end-line="5949" selection-end-column="0" />
-              <caret line="5950" column="16" selection-start-line="5950" selection-start-column="16" selection-end-line="5950" selection-end-column="16" />
-              <caret line="5951" column="0" selection-start-line="5951" selection-start-column="0" selection-end-line="5951" selection-end-column="0" />
-              <caret line="5952" column="13" selection-start-line="5952" selection-start-column="13" selection-end-line="5952" selection-end-column="13" />
-              <caret line="5953" column="24" selection-start-line="5953" selection-start-column="24" selection-end-line="5953" selection-end-column="24" />
+            <state vertical-scroll-proportion="-16.73585">
+              <caret line="5003" column="27" selection-start-line="5003" selection-start-column="21" selection-end-line="5003" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -60,8 +63,8 @@
       <file leaf-file-name="bootstrap.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bootstrap/css/bootstrap.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.346154">
-              <caret line="5310" column="18" selection-start-line="5310" selection-start-column="18" selection-end-line="5310" selection-end-column="18" />
+            <state vertical-scroll-proportion="-7.3846154">
+              <caret line="2357" column="1" selection-start-line="2357" selection-start-column="1" selection-end-line="2357" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -75,8 +78,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/css/local.css" />
         <option value="$PROJECT_DIR$/bootstrap/css/bootstrap.css" />
+        <option value="$PROJECT_DIR$/css/local.css" />
         <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
@@ -174,7 +177,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="SearchEverywhereHistoryKey" value="panel&#9;null&#9;null&#10;page-wrapper&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="panel-warning&#9;null&#9;null&#10;table&#9;null&#9;null&#10;panel-primary&#9;null&#9;null&#10;table-striped&#9;null&#9;null&#10;page-header&#9;null&#9;null&#10;page-wrapp&#9;null&#9;null&#10;page-wr&#9;null&#9;null&#10;wrapper&#9;null&#9;null&#10;page-wrapper&#9;null&#9;null&#10;panel&#9;null&#9;null" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -220,7 +223,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -258,43 +261,52 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#9599#9645#0" expanded="false" />
-            <element signature="e#9854#9908#0" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#18268#18322#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/local.css">
+    <entry file="file://$PROJECT_DIR$/register.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.5660377">
-          <caret line="5946" column="14" selection-start-line="5946" selection-start-column="14" selection-end-line="5946" selection-end-column="14" />
-          <caret line="5947" column="0" selection-start-line="5947" selection-start-column="0" selection-end-line="5947" selection-end-column="0" />
-          <caret line="5948" column="3" selection-start-line="5948" selection-start-column="3" selection-end-line="5948" selection-end-column="3" />
-          <caret line="5949" column="0" selection-start-line="5949" selection-start-column="0" selection-end-line="5949" selection-end-column="0" />
-          <caret line="5950" column="16" selection-start-line="5950" selection-start-column="16" selection-end-line="5950" selection-end-column="16" />
-          <caret line="5951" column="0" selection-start-line="5951" selection-start-column="0" selection-end-line="5951" selection-end-column="0" />
-          <caret line="5952" column="13" selection-start-line="5952" selection-start-column="13" selection-end-line="5952" selection-end-column="13" />
-          <caret line="5953" column="24" selection-start-line="5953" selection-start-column="24" selection-end-line="5953" selection-end-column="24" />
+        <state vertical-scroll-proportion="-1.7677643">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap-elements.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.5384617">
+          <caret line="234" column="37" selection-start-line="234" selection-start-column="13" selection-end-line="234" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bootstrap/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.346154">
-          <caret line="5310" column="18" selection-start-line="5310" selection-start-column="18" selection-end-line="5310" selection-end-column="18" />
+        <state vertical-scroll-proportion="-7.3846154">
+          <caret line="2357" column="1" selection-start-line="2357" selection-start-column="1" selection-end-line="2357" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/local.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.73585">
+          <caret line="5003" column="27" selection-start-line="5003" selection-start-column="21" selection-end-line="5003" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.050259966">
-          <caret line="96" column="37" selection-start-line="96" selection-start-column="37" selection-end-line="96" selection-end-column="37" />
+        <state vertical-scroll-proportion="2.7660313">
+          <caret line="459" column="8" selection-start-line="459" selection-start-column="8" selection-end-line="459" selection-end-column="8" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#9599#9645#0" expanded="false" />
-            <element signature="e#9854#9908#0" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#18268#18322#0" expanded="false" />
           </folding>
         </state>
       </provider>
