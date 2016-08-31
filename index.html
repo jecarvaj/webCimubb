@@ -25,7 +25,7 @@
     <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
     <link id="gridcss" rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/dark-bootstrap/all.min.css" />
 
-    <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+  <!--  <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>-->
     <script type="text/javascript" src="http://www.prepbootstrap.com/Content/js/gridData.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
     <script>
@@ -50,9 +50,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <button type="button" id="btnMonitorear" class="btn btn-success navbar-btn">Monitorear</button>
-            <button type="button" id="btnParar" style="display: none;" class="btn btn-danger navbar-btn">Detener</button>
-            <button type="button"  id="btnReiniciar" class="btn btn-warning navbar-btn">Reiniciar gráficas</button>
+
 
             <a class="navbar-brand" href="index.html">CIMUBB</a>
 
@@ -91,96 +89,213 @@
     </nav>
 
         <div id="page-wrapper" style="padding:10px">
+
             <div class="page-header">
-                <h1 id="encodersTab"><i class="fa fa-cogs" aria-hidden="true"></i> Cuentas de encoders</h1>
 
-                <div class="row">
-                            <div class="col-md-3" >
-                                <div class="panel panel-primary " >
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 1</h3>
+                <h1><i class="fa fa-cogs" aria-hidden="true"></i> Cuentas de encoders</h1>
+                <ul class="nav nav-tabs" style="margin-bottom: 10px;">
+                    <li class="active"><a href="#encodersTab" data-toggle="tab">Ver en tiempo real</a></li>
+                    <li id="pestañaAnalizar"><a href="#analizarTab" data-toggle="tab">Análisis guardados</a></li>
+                </ul>
+
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active in" id="encodersTab">
+
+                        <div class="row">
+                                <div id="content1">
+                                    <div id="C1" class="col-lg-3 col-md-3 " >
+                                        <div id="PC1"  class="panel panel-primary" >
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 1</h3>
+                                            </div>
+                                            <div id="panel1" class="panel-body">
+                                                <canvas id="grafica1"></canvas>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div id="panel1" class="panel-body">
-                                        <canvas id="grafica1" style="height:inherit"></canvas>
+                                </div>
+                            <div id="content2">
+                                <div id="C2" class="col-lg-3 col-md-3">
+                                    <div id="PC2" class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 2</h3>
+                                        </div>
+                                        <div id="panel2" class="panel-body">
+                                            <canvas id="grafica2"></canvas>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 2</h3>
-                                    </div>
-                                    <div id="panel2" class="panel-body">
-                                        <canvas id="grafica2"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 3</h3>
-                                    </div>
-                                    <div id="panel3" class="panel-body">
-                                        <canvas id="grafica3"></canvas>
+                            <div id="content3">
+                                <div id="C3" class="col-lg-3 col-md-3">
+                                    <div id="PC3" class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 3</h3>
+                                        </div>
+                                        <div id="panel3" class="panel-body">
+                                            <canvas id="grafica3"></canvas>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 4</h3>
-                                    </div>
-                                    <div  id="panel4"class="panel-body">
-                                        <canvas id="grafica4"></canvas>
+                            <div id="content4">
+                                <div id="C4" class="col-lg-3 col-md-3">
+                                    <div id="PC4" class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 4</h3>
+                                        </div>
+                                        <div  id="panel4"class="panel-body">
+                                            <canvas id="grafica4"></canvas>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div id="content5">
+                                <div id="C5" class="col-lg-3 col-md-3">
+                                    <div id="PC5" class="panel panel-primary">
+                                        <div  class="panel-heading">
+                                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 5</h3>
+                                        </div>
+                                        <div  id="panel5" class="panel-body">
+                                            <canvas id="grafica5"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="content6">
+                                <div id="C6" class="col-lg-3 col-md-3">
+                                    <div id="PC6" class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 6</h3>
+                                        </div>
+                                        <div  id="panel6" class="panel-body">
+                                            <canvas id="grafica6"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="content7">
+                                <div id="C7" class="col-lg-3 col-md-3">
+                                    <div id="PC7" class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 7</h3>
+                                        </div>
+                                        <div  id="panel7" class="panel-body">
+                                            <canvas id="grafica7"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="content8">
+                                <div id="C8" class="col-lg-3 col-md-3">
+                                    <div id="PC8" class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 8</h3>
+                                        </div>
+                                        <div  id="panel8"class="panel-body" >
+                                            <canvas id="grafica8"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" id="btnMonitorear" class="btn btn-success navbar-btn">Monitorear</button>
+                            <button type="button" id="btnParar" style="display: none;" class="btn btn-danger navbar-btn">Detener</button>
+                            <button type="button" id="btnReiniciar" class=" btn btn-warning navbar-btn">Reiniciar</button>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="analizarTab">
+                        <div id="R1" class="row">
+                            <div class="form-group col-lg-1">
+                                <label>Encoders</label>
+                                <div  class="checkbox">
+                                    <label>
+                                        <input id="CB1" type="checkbox" value="">
+                                        Enc 1
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input  id="CB2" type="checkbox" value="">
+                                        Enc  2
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input  id="CB3" type="checkbox" value="">
+                                        Enc  3
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="CB4"  type="checkbox" value="">
+                                        Enc  4
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="CB5"  type="checkbox" value="">
+                                        Enc  5
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="CB6" type="checkbox" value="">
+                                        Enc  6
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="CB7" type="checkbox" value="">
+                                        Enc  7
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="CB8" type="checkbox" value="">
+                                        Enc  8
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 ">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>Fecha inicio</label>
+                                        <input type="date" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Fecha final</label>
+                                        <input type="date" class="form-control" placeholder="Fecha final">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Seleccionar prueba</label>
+                                        <select class="form-control">
+
+                                        </select>
+                                    </div>
+                                </form>
+                                <div class="btn-group">
+                                    <button type="button" id="btnGraficar" class="btn btn-success navbar-btn">Gráficar</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div id="R2" class="row">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-
-
-                <div class="row">
-                            <div class="col-md-3">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 5</h3>
-                                    </div>
-                                    <div  id="panel5" class="panel-body">
-                                        <canvas id="grafica5"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 6</h3>
-                                    </div>
-                                    <div  id="panel6" class="panel-body">
-                                        <canvas id="grafica6"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 7</h3>
-                                    </div>
-                                    <div  id="panel7" class="panel-body">
-                                        <canvas id="grafica7"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 8</h3>
-                                    </div>
-                                    <div  id="panel8"class="panel-body" >
-                                        <canvas id="grafica8"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                </div>
             </div> <!--fin primera parte encoders, page-header-->
 
                 <div class="page-header">
@@ -298,7 +413,7 @@
         grafica7 = new Chart(ctx7).Line(datosIniciales, {animationSteps: 1});
         grafica8 = new Chart(ctx8).Line(datosIniciales, {animationSteps: 1});
 
-        var refMensajesRecibidos = database.ref("recibidos").orderByKey();
+        var refMensajesRecibidos = database.ref("recibifsdafdos").orderByKey();
 
         //Se ejecuta por cada valor existente en la BD
         //y cada que se agrega un valor nuevo a la base de datos
@@ -308,7 +423,7 @@
             $('#tablaMensajesRecibidos').prepend('<tr><td>'+recibido.mensaje+'</td><td>'+recibido.fecha+'</td><td>'+recibido.hora+'</td></tr>');
         });
 
-        var refMensajesEnviados = database.ref("enviados");
+        var refMensajesEnviados = database.ref("enviafasdfdos");
 
         //Se ejecuta por cada valor existente en la BD
         //y cada que se agrega un valor nuevo a la base de datos
@@ -319,7 +434,7 @@
         });
 
         //Usamos JQuery para detectar clic en el botón
-        $('#btnReiniciar').click(function () {
+        $('.btnReiniciar').click(function () {
 
 
             $('#grafica1').remove();
@@ -373,7 +488,7 @@
         });
         $('#btnMonitorear').click(function () {
 
-
+            deshabilitar(); //Oculto el boton monitorear y lo cambio por Parar
             //Accedemos a nuestra base de datos, teniendo previamente inicializada la web para trabajar con firebase (al principio)
 
 
@@ -402,7 +517,8 @@
                     puntos--;
 
                 }
-                deshabilitar();
+
+
 
             });
 
@@ -417,6 +533,7 @@
 
         function habilitar() {
             $('#btnReiniciar').attr("disabled", false);
+            $('#pestañaAnalizar').show();
             $('#btnMonitorear').show();
             $('#btnParar').hide();
 
@@ -426,10 +543,103 @@
             $('#btnReiniciar').attr("disabled", true);
             $('#btnMonitorear').hide();
             $('#btnParar').show();
+            $('#pestañaAnalizar').hide();
+
         }
 
+        $( '#CB1' ).on( 'click', function() {
+            var id=$('#C1');
+            if( $(this).is(':checked') ){
+                   // var a= $('#C1');
+               // console.log(a);
+                //$('#R2').append('<div class=\"col-lg-3\">'+a+'</div>');
+
+                id.removeClass('col-lg-3').addClass('col-lg-4');
+                $('#R2').append(id);
+            }else{
+
+                id.removeClass('col-lg-4').addClass('col-lg-3');
+                id.appendTo($('#content1'));
+            }
+        });
+
+        $( '#CB2' ).on( 'click', function() {
+            var id=$('#C2');
+            if( $(this).is(':checked') ){
+
+               // $('#R2').append('<div class=\"col-lg-3\">'+a+'</div>');
+
+                id.removeClass('col-lg-3').addClass('col-lg-4');
+                $('#R2').append(id);
+            }else{
+                id.removeClass('col-lg-4').addClass('col-lg-3');
+                id.appendTo($('#content2'));
+            }
+        });
+        $( '#CB3' ).on( 'click', function() {
+            var id=$('#C3');
+            if( $(this).is(':checked') ){
+                id.removeClass('col-lg-3').addClass('col-lg-4');
+                $('#R2').append(id);
+            }else{
+                id.removeClass('col-lg-4').addClass('col-lg-3');
+                id.appendTo($('#content3'));
+            }
+        });
+        $( '#CB4' ).on( 'click', function() {
+            var id=$('#C4');
+            if( $(this).is(':checked') ){
+                id.removeClass('col-lg-3').addClass('col-lg-4');
+                $('#R2').append(id);
+            }else{
+                id.removeClass('col-lg-4').addClass('col-lg-3');
+                id.appendTo($('#content4'));
+            }
+        });
+        $( '#CB5' ).on( 'click', function() {
+            var id=$('#C5');
+            if( $(this).is(':checked') ){
+                id.removeClass('col-lg-3').addClass('col-lg-4');
+                $('#R2').append(id);
+            }else{
+                id.removeClass('col-lg-4').addClass('col-lg-3');
+                id.appendTo($('#content5'));
+            }
+        });
+        $( '#CB6' ).on( 'click', function() {
+            var id=$('#C6');
+            if( $(this).is(':checked') ){
+                id.removeClass('col-lg-3').addClass('col-lg-4');
+                $('#R2').append(id);
+            }else{
+                id.removeClass('col-lg-4').addClass('col-lg-3');
+               id.appendTo($('#content6'));
+            }
+        });
+        $( '#CB7' ).on( 'click', function() {
+            var id=$('#C7');
+            if( $(this).is(':checked') ){
+
+                id.removeClass('col-lg-3').addClass('col-lg-4');
+                $('#R2').append(id);
+            }else{
+                id.removeClass('col-lg-4').addClass('col-lg-3');
+                id.appendTo($('#content7'));
+            }
+        });
+        $( '#CB8' ).on( 'click', function() {
+            var id=$('#C8');
+            if( $(this).is(':checked') ){
+                id.removeClass('col-lg-3').addClass('col-lg-4');
+                $('#R2').append(id);
+            }else{
+                id.removeClass('col-lg-4').addClass('col-lg-3');
+               id.appendTo($('#content8'));
+            }
+        });
 $('#btnOrdenar').click(function(){
 
+    //$('#pestañaAnalizar a').removeAttr('href');
 });
 
 
