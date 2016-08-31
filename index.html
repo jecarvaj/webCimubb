@@ -10,13 +10,15 @@
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="css/local.css" />
 
-    <script src="js/Chart.min.js"></script>
+    <script type="text/javascript" src="js/Chart.min.js"></script>
 
 
 
     <!-- Agregamos la librería jquery.js desde su repositorio -->
 
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+
+
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
     <!-- you need to include the shieldui css and js assets in order for the charts to work -->
@@ -49,7 +51,9 @@
                 <span class="icon-bar"></span>
             </button>
             <button type="button" id="btnMonitorear" class="btn btn-success navbar-btn">Monitorear</button>
-            <button type="button" id="btnReiniciar" class="btn btn-warning navbar-btn">Reiniciar gráficas</button>
+            <button type="button" id="btnParar" style="display: none;" class="btn btn-danger navbar-btn">Detener</button>
+            <button type="button"  id="btnReiniciar" class="btn btn-warning navbar-btn">Reiniciar gráficas</button>
+
             <a class="navbar-brand" href="index.html">CIMUBB</a>
 
 
@@ -59,7 +63,7 @@
 
             <ul class="nav navbar-nav navbar-right navbar-user">
                 <li class="dropdown messages-dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-cogs" aria-hidden="true"></i> Seleccionar dispositivo  <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">  Seleccionar dispositivo  <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li class="message-preview">
                             <a href="#">
@@ -86,7 +90,7 @@
         </div>
     </nav>
 
-        <div id="page-wrapper" >
+        <div id="page-wrapper" style="padding:10px">
             <div class="page-header">
                 <h1 id="encodersTab"><i class="fa fa-cogs" aria-hidden="true"></i> Cuentas de encoders</h1>
 
@@ -171,7 +175,7 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Encoder 8</h3>
                                     </div>
-                                    <div  id="panel8"class="panel-body">
+                                    <div  id="panel8"class="panel-body" >
                                         <canvas id="grafica8"></canvas>
                                     </div>
                                 </div>
@@ -180,7 +184,7 @@
             </div> <!--fin primera parte encoders, page-header-->
 
                 <div class="page-header">
-                    <h1>Mensajes</h1>
+                    <h1><i class="fa fa-envelope-o" aria-hidden="true"></i> Mensajes</h1>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="panel panel-success">
@@ -190,10 +194,10 @@
                                          Historial mensajes recibidos
                                     </h4>
                                 </div>
-
+                                <div class="panel-body" style="max-height: 450px;overflow-y: scroll;">
                                 <!-- Table -->
                                 <div class="table-responsive">
-                                    <table class="table" id="tablaMensajesRecibidos">
+                                    <table class="table" id="tablaMensajesRecibidos" >
                                         <thead>
                                         <tr>
                                             <th>Mensaje</th>
@@ -206,6 +210,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                    </div>
                             </div>
                         </div>
 
@@ -217,7 +222,7 @@
                                         Historial mensajes enviados
                                     </h4>
                                 </div>
-
+                                <div class="panel-body" style="max-height: 450px;overflow-y: scroll;">
                                 <!-- Table -->
                                 <div class="table-responsive">
                                     <table class="table" id="tablaMensajesEnviados">
@@ -233,6 +238,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -247,6 +253,10 @@
 </body>
 <script>
     $( document ).ready(function() {
+
+
+        var database = firebase.database();
+        var referencia = database.ref("enc1");
 
         //variable para limitar los valores a mostrar en la grafica
         puntos = 0;
@@ -288,51 +298,14 @@
         grafica7 = new Chart(ctx7).Line(datosIniciales, {animationSteps: 1});
         grafica8 = new Chart(ctx8).Line(datosIniciales, {animationSteps: 1});
 
-        //Accedemos a nuestra base de datos, teniendo previamente inicializada la web para trabajar con firebase (al principio)
-        var database = firebase.database();
-
-        //Hacemos referencia a donde se encuentren los datos a mostrar
-        var referencia = database.ref("encoders");
-
-        //Se ejecuta por cada valor existente en la BD
-        //y cada que se agrega un valor nuevo a la base de datos
-        referencia.on("child_added", function (snapshot) {
-            //recuperamos una captura del objeto leido
-            var t = snapshot.val();//t corresponderá a cada elemento dentro del nodo Temp
-            //Mostramos los datos en la consola de javascript
-            //console.log("Value: " + t.value);
-            //console.log("Timestamp: " + t.timestamp);
-            //Agregamos los datos a la tabla
-            //$('#tabla').append('<tr><td>'+t.timestamp+'</td><td>'+t.value+'</td></tr>');
-
-            //Agregamos valores a la gráfica
-            grafica.addData([t.enc1], "");
-            grafica2.addData([t.enc2], "");
-            grafica3.addData([t.enc3], "");
-            grafica4.addData([t.enc4], "");
-            grafica5.addData([t.enc5], "");
-            grafica6.addData([t.enc6], "");
-            grafica7.addData([t.enc7], "");
-            grafica8.addData([t.enc8], "");
-//console.log(t.enc2);
-            puntos++;
-            console.log(puntos);
-            if (puntos > maxPuntos) {
-                grafica.removeData();
-                puntos--;
-
-            }
-
-        });
-
-        var refMensajesRecibidos = database.ref("recibidos");
+        var refMensajesRecibidos = database.ref("recibidos").orderByKey();
 
         //Se ejecuta por cada valor existente en la BD
         //y cada que se agrega un valor nuevo a la base de datos
         refMensajesRecibidos.on("child_added", function (snapshot) {
             //recuperamos una captura del objeto leido
             var recibido = snapshot.val();//t corresponderá a cada elemento dentro del nodo
-            $('#tablaMensajesRecibidos').append('<tr><td>'+recibido.mensaje+'</td><td>'+recibido.fecha+'</td><td>'+recibido.hora+'</td></tr>');
+            $('#tablaMensajesRecibidos').prepend('<tr><td>'+recibido.mensaje+'</td><td>'+recibido.fecha+'</td><td>'+recibido.hora+'</td></tr>');
         });
 
         var refMensajesEnviados = database.ref("enviados");
@@ -342,7 +315,7 @@
         refMensajesEnviados.on("child_added", function (snapshot) {
             //recuperamos una captura del objeto leido
             var enviado = snapshot.val();//t corresponderá a cada elemento dentro del nodo
-            $('#tablaMensajesEnviados').append('<tr><td>'+enviado.mensaje+'</td><td>'+enviado.fecha+'</td><td>'+enviado.hora+'</td></tr>');
+            $('#tablaMensajesEnviados').prepend('<tr><td>'+enviado.mensaje+'</td><td>'+enviado.fecha+'</td><td>'+enviado.hora+'</td></tr>');
         });
 
         //Usamos JQuery para detectar clic en el botón
@@ -399,32 +372,65 @@
 
         });
         $('#btnMonitorear').click(function () {
-            //  referencia.on("child_added", function(snapshot, prevChildKey) {
-            //recuperamos una captura del objeto leido
-            //  var t = snapshot.val();//t corresponderá a cada elemento dentro del nodo Temp
-            //Mostramos los datos en la consola de javascript
-            //console.log("Value: " + t.value);
-            //console.log("Timestamp: " + t.timestamp);
-            //Agregamos los datos a la tabla
-            //$('#tabla').append('<tr><td>'+t.timestamp+'</td><td>'+t.value+'</td></tr>');
-
-            //Agregamos valores a la gráfica
-            grafica.addData([6], "");
-            grafica2.addData([8], "");
-            grafica3.addData([1], "");
-            grafica4.addData([8], "");
-            grafica5.addData([3], "");
-            grafica6.addData([9], "");
-            grafica7.addData([4], "");
-            grafica8.addData([3], "");
 
 
-            //  });
-            alert("holaa");
+            //Accedemos a nuestra base de datos, teniendo previamente inicializada la web para trabajar con firebase (al principio)
+
+
+            //Hacemos referencia a donde se encuentren los datos a mostrar
+
+            //Se ejecuta por cada valor existente en la BD
+            //y cada que se agrega un valor nuevo a la base de datos
+            referencia.on("child_added", function (snapshot) {
+                //recuperamos una captura del objeto leido
+                var t = snapshot.val();//t corresponderá a cada elemento dentro del nodo
+
+                //Agregamos valores a la gráfica
+                grafica.addData([t.enc1], "");
+                grafica2.addData([t.enc2], "");
+                grafica3.addData([t.enc3], "");
+                grafica4.addData([t.enc4], "");
+                grafica5.addData([t.enc5], "");
+                grafica6.addData([t.enc6], "");
+                grafica7.addData([t.enc7], "");
+                grafica8.addData([t.enc8], "");
+//console.log(t.enc2);
+                puntos++;
+                console.log(puntos);
+                if (puntos > maxPuntos) {
+                    grafica.removeData();
+                    puntos--;
+
+                }
+                deshabilitar();
+
+            });
+
 
 
         });
 
+        $('#btnParar').click(function(){
+           referencia.off();
+            habilitar();
+        });
+
+        function habilitar() {
+            $('#btnReiniciar').attr("disabled", false);
+            $('#btnMonitorear').show();
+            $('#btnParar').hide();
+
+
+        }
+        function deshabilitar() {
+            $('#btnReiniciar').attr("disabled", true);
+            $('#btnMonitorear').hide();
+            $('#btnParar').show();
+        }
+
+$('#btnOrdenar').click(function(){
+
+});
 
 
     });
