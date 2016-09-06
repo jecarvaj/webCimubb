@@ -488,43 +488,39 @@
         });
         $('#btnMonitorear').click(function () {
 
-            deshabilitar(); //Oculto el boton monitorear y lo cambio por Parar
-            //Accedemos a nuestra base de datos, teniendo previamente inicializada la web para trabajar con firebase (al principio)
+                        deshabilitar();
+            
 
+            first = true;
+            referencia.limitToLast(1).on("child_added", function(snap) {
+               if( first ) {
+                   first = false; 
+               } 
+               else {
+                    var t = snap.val();
+                    grafica.addData([t.enc1], "");
+                    grafica2.addData([t.enc2], "");
+                    grafica3.addData([t.enc3], "");
+                    grafica4.addData([t.enc4], "");
+                    grafica5.addData([t.enc5], "");
+                    grafica6.addData([t.enc6], "");
+                    grafica7.addData([t.enc7], "");
+                    grafica8.addData([t.enc8], "");
+                    puntos++;
+                    console.log(puntos);
+                    if (puntos > maxPuntos) {
+                        grafica.removeData();
+                        puntos--;
 
-            //Hacemos referencia a donde se encuentren los datos a mostrar
-
-            //Se ejecuta por cada valor existente en la BD
-            //y cada que se agrega un valor nuevo a la base de datos
-            referencia.on("child_added", function (snapshot) {
-                //recuperamos una captura del objeto leido
-                var t = snapshot.val();//t corresponderá a cada elemento dentro del nodo
-
-                //Agregamos valores a la gráfica
-                grafica.addData([t.enc1], "");
-                grafica2.addData([t.enc2], "");
-                grafica3.addData([t.enc3], "");
-                grafica4.addData([t.enc4], "");
-                grafica5.addData([t.enc5], "");
-                grafica6.addData([t.enc6], "");
-                grafica7.addData([t.enc7], "");
-                grafica8.addData([t.enc8], "");
-//console.log(t.enc2);
-                puntos++;
-                console.log(puntos);
-                if (puntos > maxPuntos) {
-                    grafica.removeData();
-                    puntos--;
-
-                }
-
-
-
+                    }
+                   console.log('new record', snap.val().timestamp);
+               }
             });
 
 
-
         });
+
+        
 
         $('#btnParar').click(function(){
            referencia.off();
@@ -635,14 +631,45 @@
                id.appendTo($('#content8'));
             }
         });
-$('#btnGraficar').click(function(){
 
-
-});
+    $('#btnGraficar').click(function(){
 
 
     });
 
-</script>
+    $('#btnPrueba').click(function(){
 
+
+        var querypruebas = database.ref("pruebaEncoders");
+        
+        querypruebas.orderByChild("nombre_prueba").equalTo("test2").once("value", function(snapshot) {
+            console.log("1");
+          console.log(snapshot.val());
+        });
+
+        
+        querypruebas.orderByChild("nombre_prueba").equalTo("test2").once("value", function(snapshot) {
+            console.log("2");
+          
+            snapshot.forEach(function(data) {
+                
+                console.log( data.val().encoders.ID147317346056.enc1);
+            });
+
+
+        });
+
+        
+
+    });
+
+     
+
+
+    });    
+
+
+</script>
+    
+    <button type="button" id="btnPrueba">preuba</button>
 </html>
