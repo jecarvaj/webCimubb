@@ -277,7 +277,7 @@
 
                                     <div class="form-group">
                                         <label>Seleccionar prueba</label>
-                                        <select class="form-control">
+                                        <select class="form-control" id="Sprueba">
 
                                         </select>
                                     </div>
@@ -388,6 +388,32 @@
         var ctx7 = document.getElementById("grafica7").getContext("2d");
         var ctx8 = document.getElementById("grafica8").getContext("2d");
 
+
+
+
+
+
+        var cuisines = ["Chinese","Indian"];     
+        var sel = document.getElementById('Sprueba');
+        var opt = document.createElement('option');
+        opt.innerHTML = "";
+        opt.value = null;
+        sel.appendChild(opt);
+        for(var i = 0; i < cuisines.length; i++) {
+            var opt = document.createElement('option');
+            opt.innerHTML = cuisines[i];
+            opt.value = cuisines[i];
+            sel.appendChild(opt);
+        }
+
+
+
+
+
+
+
+
+
         //Datos iniciales vacíos
         datosIniciales = {
             labels: [0],
@@ -488,8 +514,8 @@
 
         });
         $('#btnMonitorear').click(function () {
-
-                        deshabilitar();
+            
+            deshabilitar();
             
 
             first = true;
@@ -634,6 +660,10 @@
         });
 
     $('#btnGraficar').click(function(){
+        var e = document.getElementById("Sprueba");
+        var strUser = e.options[e.selectedIndex].text;
+        console.log(strUser);
+        if(strUser=="")console.log("es null");
 
 
     });
@@ -643,7 +673,7 @@
 
         var querypruebas = database.ref("pruebaEncoders");
         
-        querypruebas.orderByChild("nombre_prueba").equalTo("test2").once("value", function(snapshot) {
+        /*querypruebas.orderByChild("nombre_prueba").equalTo("test2").once("value", function(snapshot) {
             console.log("1");
           console.log(snapshot.val());
         });
@@ -659,6 +689,19 @@
 
 
         });
+
+
+        querypruebas.once("value", function(snapshot) {
+            console.log("2");
+          
+            snapshot.forEach(function(data) {
+                
+                console.log( data.val().nombre_prueba);
+            });
+
+
+        });
+        */
 
         
 
