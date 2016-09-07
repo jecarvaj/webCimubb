@@ -1,0 +1,12 @@
+{
+  "rules": {
+    ".read": "true",
+    ".write": "true",
+    "encoders": {
+      ".indexOn": "timestamp"
+    },
+    "pruebaEncoders": {
+      ".indexOn": "nombre_prueba"
+    }
+  }
+}
